@@ -17,7 +17,12 @@ async function findById(questionId: number){
     return question
 }
 
+async function findAll(){
+    return questionRepository.findAll();
+}
+
 export default {
     insert,
-    findById
+    findById,
+    findAll
 }
