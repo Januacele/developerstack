@@ -18,5 +18,8 @@ export async function get(req: Request, res: Response) {
 }
 
 export async function getById(req: Request, res: Response) {
-  // TODO
+  const id = parseInt(req.params.id);
+  const question = await questionService.findById(id);
+
+  res.send(question);
 }
