@@ -7,9 +7,22 @@ async function insert(createQuestionData: CreateQuestionData){
     });
 }
 
+async function findById(id: number){
+    return prisma.question.findUnique({
+        where: { id },
+        include: {
+            answers: true
+        }
+    });
+}
 
+async function findAll(){
+    return prisma.question.findMany();
+}
 
 
 export default {
-    insert
+    insert,
+    findById,
+    findAll
 }
