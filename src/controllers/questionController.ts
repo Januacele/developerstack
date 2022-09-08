@@ -1,6 +1,8 @@
 import { Request, Response } from 'express';
 import questionService from '../services/questionService';
 import { CreateQuestionData } from '../services/questionService';
+import answerService from '../services/answerService';
+import { CreateAnswerData } from '../services/answerService';
 
 export async function createQuestion(req: Request, res: Response) {
   const question: CreateQuestionData = req.body;
@@ -10,7 +12,11 @@ export async function createQuestion(req: Request, res: Response) {
 }
 
 export async function createAnswer(req: Request, res: Response) {
-  // TODO
+  const answer : CreateAnswerData = req.body;
+  const questionId = parseInt(req.params.id);
+  await answerService.insert({...answer, questionId});
+
+  res.sendStatus(201);
 }
 
 export async function get(req: Request, res: Response) {
